@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import SelecionarFilme from "../SelecionarFilme/SelecionarFilme";
 import SelecionarHorario from "../SelecionarHorario/SelecionarHorario";
 import SelecionarSecao from "../SelecionarSecao/SelecionarSecao";
+import TelaSucesso from "../TelaSucesso/TelaSucesso";
 
 export default function App () {
     return (
@@ -15,6 +16,7 @@ export default function App () {
           <Route path="/" element={<SelecionarFilme />} />
           <Route path="/filme/id" element={<SelecionarHorario />} />
           <Route path="/sessao/id" element={<SelecionarSecao />} />
+          <Route path="/sucesso" element={<TelaSucesso />} />
         </Routes>
     </BrowserRouter>
     )    

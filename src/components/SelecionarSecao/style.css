@@ -111,5 +111,6 @@ input::placeholder {
     border: none;
     color: #FFFFFF;
     margin-top: 57px;
+    margin-bottom: 30px;
     cursor: pointer;
 }
