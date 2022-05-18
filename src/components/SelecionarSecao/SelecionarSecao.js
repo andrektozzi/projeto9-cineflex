@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import "./style.css";
+import Footer from "../Footer/Footer";
 
 
 function Label (props) {
@@ -67,6 +68,7 @@ export default function SelecionarSecao () {
                     <button className="reservaAssento">Reservar Assento(s)</button>
                 </Link>
             </div>
+        <Footer />    
         </>
     )
 }

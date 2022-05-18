@@ -5,9 +5,9 @@ h1 {
     color: #E8833A;
     height: 67px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0%;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;

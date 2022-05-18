@@ -13,7 +13,6 @@ h5 {
 .containerSelecionarSecao {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     margin-top: -20px;
 }
@@ -79,6 +78,8 @@ h5 {
     font-weight: 400;
     font-family: 'Roboto', sans-serif;
     color: #293845;
+    align-items: flex-start;
+    width: 327px;
 }
 
 input {
@@ -111,6 +112,6 @@ input::placeholder {
     border: none;
     color: #FFFFFF;
     margin-top: 57px;
-    margin-bottom: 30px;
+    margin-bottom: 160px;
     cursor: pointer;
 }

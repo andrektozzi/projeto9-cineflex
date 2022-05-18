@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
 import "./style.css";
+import Footer from "../Footer/Footer";
 
 export default function SelecionarHorario () {
     return (
         <>
-            <p>Selecione o horário</p>
+            <h5>Selecione o horário</h5>
             <div className="containerSelecionarHorario">
                 <span>Quinta-feira - 24/06/2021</span>
                 <div className="botaoHora">
@@ -28,6 +29,7 @@ export default function SelecionarHorario () {
                     </Link>
                 </div>
             </div>
+        <Footer />
         </>
     )
 }
