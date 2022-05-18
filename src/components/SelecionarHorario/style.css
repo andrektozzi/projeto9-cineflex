@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+.root {
+    width: 100%;
+}
+
+.containerSelecionarHorario p {
+    height: 110px;
+    color: #293845;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerSelecionarHorario span {
+    color: #293845;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.containerSelecionarHorario button {
+    height: 43px;
+    width: 82px;
+    color: #FFFFFF;
+    background-color: #E8833A;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    margin: 22px 4px;
+    cursor: pointer;
+}

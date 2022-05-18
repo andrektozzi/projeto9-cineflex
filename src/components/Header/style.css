@@ -1,0 +1,14 @@
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 34px;
+    background-color: #C3CFD9;
+    color: #E8833A;
+    height: 67px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
