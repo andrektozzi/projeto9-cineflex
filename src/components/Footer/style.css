@@ -1,5 +1,5 @@
 .containerFooter {
-    height: 117px;
+    min-height: 117px;
     width: 100%;
     font-size: 26px;
     font-family: 'Roboto', sans-serif;
@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     padding: 14px 10px;
+    border-top: 1px outset #9EADBA;
 }
 
 .containerFooter img {
@@ -24,7 +25,6 @@
 }
 
 .containerFooter p {
-    height: 30px;
     font-size: 26px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -32,4 +32,5 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom: 7px;
 }

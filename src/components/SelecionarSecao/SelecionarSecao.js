@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 import "./style.css";
 import Footer from "../Footer/Footer";
@@ -14,6 +16,25 @@ function Label (props) {
 }
 
 export default function SelecionarSecao () {
+
+    const [imagemFilme, setImagemFilme] = useState([]);
+    const [tituloFilme, setTituloFilme] = useState([]);
+    const [weekdayFilme, setWeekdayFilme] = useState([]);
+    const [dataFilme, setDataFilme] = useState([]);
+    const [secao, setSecao] = useState([]);
+    const { id } = useParams();
+
+    useEffect (() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${id}/seats`)
+
+        promise.then((resposta) => {
+            setSecao([resposta.data]);
+            setImagemFilme(`${resposta.data.movie.posterURL}`);
+            setTituloFilme(`${resposta.data.movie.title}`);
+            setWeekdayFilme(`${resposta.data.day.weekday}`);
+            setDataFilme(`${resposta.data.day.date}`);
+        })
+    }, [])
 
     const labels = [
         {
@@ -68,7 +89,12 @@ export default function SelecionarSecao () {
                     <button className="reservaAssento">Reservar Assento(s)</button>
                 </Link>
             </div>
-        <Footer />    
+        <Footer 
+            imagemFilme={imagemFilme}
+            tituloFilme={tituloFilme}
+            weekdayFilme={weekdayFilme}
+            dataFilme={dataFilme}
+        />    
         </>
     )
 }

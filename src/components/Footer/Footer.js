@@ -1,14 +1,14 @@
 import "./style.css";
-import filme from "../../assets/images/filme.png";
 
-export default function Footer() {
+
+export default function Footer({imagemFilme, tituloFilme, dataFilme, weekdayFilme}) {
     return (
         <>
             <div className="containerFooter">
-                <img src={filme} alt="imagemFilme" />
+                <img src={imagemFilme} alt="imagemFilme" />
                 <div>
-                <p>Enola Holmes</p>
-                <p>Quinta-Feira - 15:00</p>
+                <p>{tituloFilme}</p>
+                {weekdayFilme ? <p>{weekdayFilme} - {dataFilme}</p> : null}
                 </div>
             </div>
         </>

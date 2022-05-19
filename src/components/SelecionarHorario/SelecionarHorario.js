@@ -7,25 +7,29 @@ import "./style.css";
 import Footer from "../Footer/Footer";
 
 function Showtime ({index, days}) {
+
+    const daysMovies = days.map(({weekday, date, showtimes})=>{
+        const showtimeMovie = showtimes.map(({name, id})=>{
+            return(
+                <Link to={`/sessao/${id}`}>
+                    <button>{name}</button> 
+                </Link>
+            );
+        })
+
+        return(
+            <>
+                <span>{weekday} - {date}</span>
+                <div className="botaoHora"> 
+                    {showtimeMovie}
+                </div>
+            </>
+        )
+    });
+
     return (
         <div className="containerSelecionarHorario" key={index}>
-            {days.map(({weekday, date, showtimes})=>{
-                    return(
-                        <>
-                            <span>{weekday} - {date}</span>
-                            <div className="botaoHora"> 
-                                {showtimes.map(({name, id})=>{
-                                    return(
-                                        <Link to={`/sessao/${id}`}>
-                                            <button>{name}</button> 
-                                        </Link>
-                                    );
-                                })}
-                            </div>
-                        </>
-                    )
-                })
-            }
+            {daysMovies}
         </div>  
     )
 }
@@ -33,14 +37,19 @@ function Showtime ({index, days}) {
 export default function SelectShowtime(){
 
     const [movies, setMovies] = useState([]);
+    const [imagemFilme, setImagemFilme] = useState([]);
+    const [tituloFilme, setTituloFilme] = useState([]);
     const  { id }  = useParams();
+    
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${id}/showtimes`)
     
         promise.then((response) => {
           setMovies([response.data]);
-        }) // eslint-disable-next-line
+          setImagemFilme(`${response.data.posterURL}`)
+          setTituloFilme(`${response.data.title}`)
+        })
       }, []);
 
       const moviesShowtime = movies.map((movie,index) => 
@@ -54,7 +63,10 @@ export default function SelectShowtime(){
         <>
             <h5>Selecione o horário</h5>
             {movies.length === 0 ? 'Carregando' : moviesShowtime}        
-            <Footer />
+            <Footer 
+                tituloFilme={tituloFilme}
+                imagemFilme={imagemFilme}
+            />
         </>
     )
 }
