@@ -10,107 +10,106 @@ h5 {
     color: #293845;
 }
 
-.containerSelecionarSecao {
+.containerSelectSession{
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     margin-top: -20px;
 }
 
-.botaoAssento {
+.buttonsSeat{
     width: 340px;
 }
 
-.botaoAssento button, .botaoLabel button {
-    height: 26px;
+.buttonsSeat button, .buttonLabel button{
     width: 26px;
+    height: 26px;
     background-color: #C3CFD9;
-    border-radius: 17px;
     border: 1px solid #808F9D;
+    border-radius: 17px;
     margin: 9px 4px;
     cursor: pointer;
 }
 
-.botaoLabel {
+.buttonLabel{
     display: flex;
-    justify-content: center;
     flex-direction: row;
+    justify-content: center;
 }
 
-.botaoLabel .selected {
-    background-color: #8DD7CF;
+.containerSelectSession .available{
+    background-color: #C3CFD9;
+    border: 1px solid #808F9D;
+}
+
+.containerSelectSession .selected{
+    background-color:#8DD7CF;
     border: 1px solid #1AAE9E;
 }
 
-.botaoLabel .available {
-    background-color: #C3CFD9;
-    border: 1px solid #7B8B99;
-}
-
-.botaoLabel .unavailable {
-    background-color: #FBE192;
+.containerSelectSession  .unavailable{
+    background-color:#FBE192;
     border: 1px solid #F7C52B;
 }
 
-.label {
-    width: 96px;
+.label{
+    width:96px;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 45px;
 }
 
-.label span {
-    font-size: 13px;
-    font-weight: 400;
+.label span{
     font-family: 'Roboto', sans-serif;
-    color: #4E5A65;
+    font-weight: 400;
+    font-size: 13x;
+    color: #4e5a65;
 }
 
-.infoCliente {
-    display: flex;
-    align-items: center;
+.infoCostumer{
+    display:flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.infoCliente span {
-    font-size: 18px;
-    font-weight: 400;
+.infoCostumer span{
     font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18x;
     color: #293845;
-    align-items: flex-start;
     width: 327px;
+    align-items: flex-start;
 }
 
-input {
-    height: 50px;
-    width: 327px;
-    font-size: 18px;
+input{
     font-weight: 400;
     font-family: 'Roboto', sans-serif;
-    background-color: #FFFFFF;
+    font-size: 18px;
+    background: #FFFFFF;
     border: 1px solid #D5D5D5;
     border-radius: 3px;
-    outline: none;
+    outline:none;
+    width: 327px;
+    height: 50px;
     margin: 4px 0px 8px 0px;
 }
 
-input::placeholder {
-    font-style: italic;
-    opacity: 1;
+input::placeholder{
     color: #AFAFAF;
+    opacity: 1;
+    font-style: italic;
 }
 
-.reservaAssento {
-    height: 42px;
+.bookSeat{
     width: 225px;
-    font-size: 18px;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
-    background-color: #E8833A;
-    border-radius: 3px;
+    height: 42px;
+    background-color:#E8833A;
     border: none;
-    color: #FFFFFF;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
     margin-top: 57px;
     margin-bottom: 160px;
     cursor: pointer;

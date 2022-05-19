@@ -6,95 +6,109 @@ import "./style.css";
 import Footer from "../Footer/Footer";
 
 
-function Label (props) {
+function Label({index, className, text}){
     return (
         <div className="label">
-            <button key={props.index} className={props.class}></button>
-            <span>{props.text}</span>
+            <button key={index} className={className}></button>
+            <span>{text}</span>
         </div>
     )
 }
 
-export default function SelecionarSecao () {
+function Seats({index, id, isAvailable, name}){
 
-    const [imagemFilme, setImagemFilme] = useState([]);
-    const [tituloFilme, setTituloFilme] = useState([]);
-    const [weekdayFilme, setWeekdayFilme] = useState([]);
-    const [dataFilme, setDataFilme] = useState([]);
-    const [secao, setSecao] = useState([]);
-    const { id } = useParams();
+    const [buttonClassName, setButtonClassname] = useState(`${isAvailable ? "available" : "unavailable"}`)
 
-    useEffect (() => {
+
+    return (
+        <button key={index} className={buttonClassName} id={id} name={name} onClick={()=> {
+            SelectSeats(buttonClassName, setButtonClassname, id);
+            }} > {name} 
+        </button>
+    )
+}
+
+function SelectSeats(buttonClassName, setButtonClassname){
+
+    if (buttonClassName === "available"){
+        setButtonClassname("selected");
+    } 
+    if (buttonClassName === "selected"){
+        setButtonClassname("available");
+    } 
+
+}
+
+export default function SelectSession(){
+    
+    const [movieTitle, setMovieTitle] = useState([]);  
+    const [movieImg, setMovieImg] = useState([]);  
+    const [movieWeekday, setMovieWeekday] = useState([]);  
+    const [movieHour, setMovieHour] = useState([]);  
+    const [movieSeats, setMovieSeats] = useState([]);  
+    const [session, setSession] = useState([]);
+    const  { id }  = useParams();
+
+    useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${id}/seats`)
-
-        promise.then((resposta) => {
-            setSecao([resposta.data]);
-            setImagemFilme(`${resposta.data.movie.posterURL}`);
-            setTituloFilme(`${resposta.data.movie.title}`);
-            setWeekdayFilme(`${resposta.data.day.weekday}`);
-            setDataFilme(`${resposta.data.day.date}`);
+    
+        promise.then((response) => {
+          setSession([response.data]);
+          setMovieSeats([...response.data.seats]);
+          setMovieTitle(`${response.data.movie.title}`);
+          setMovieImg(`${response.data.movie.posterURL}`);
+          setMovieWeekday(`${response.data.day.weekday}`);
+          setMovieHour(`${response.data.name}`);
         })
-    }, [])
+      }, []);
 
-    const labels = [
+      const labels = [
         {
-            class: "selected",
+            className: "selected",
             text: "Selecionado"
         },
         {
-            class: "available",
+            className: "available",
             text: "Disponível"
         },
         {
-            class: "unavailable",
+            className: "unavailable",
             text: "Indisponível"
         },
-    ]
+    ] 
 
-    const botaoLabel = labels.map ((item, index) => (
-        <Label class={item.class} text={item.text} key={index} />
+    const buttonLabel =  labels.map((item, index) => (
+        <Label className={item.className} text={item.text} key={index}/>
     ));
 
-    let botoes = [];
-    let i = 0;
+    const buttonSeat = movieSeats.map((seat, index) => (
+        <Seats key={index} id={seat.id} name={seat.name} isAvailable={seat.isAvailable}/>
+    ));
 
-    while (i < 50) {
-        i++;
-        botoes.push(i);
-    }
-
-    const botaoAssento = botoes.map (function (item, index){
-        return (
-            <button key={index}> {index + 1} </button>
-        )
-    })
-
-    return (
+    return(
         <>
             <h5>Selecione o(s) assento(s)</h5>
-            <div className="containerSelecionarSecao">
-                <div className="botaoAssento">
-                    {botaoAssento}
+            <div className="containerSelectSession">
+                <div className="buttonsSeat"> 
+                    {session.length === 0 ? 'Carregando' : buttonSeat}  
                 </div>
-                <div className="botaoLabel">
-                    {botaoLabel}
+                <div className="buttonLabel"> 
+                    {buttonLabel}
                 </div>
-                <div className="infoCliente">
+                <div className="infoCostumer">
                     <span>Nome do Comprador:</span>
-                    <input type="text" placeholder="Digite seu nome..." />
+                    <input type="text" placeholder="Digite seu nome..." /> 
                     <span>CPF do Comprador:</span>
-                    <input type="text" placeholder="Digite seu CPF..." />
-                </div>
-                <Link to="/sucesso">
-                    <button className="reservaAssento">Reservar Assento(s)</button>
-                </Link>
-            </div>
-        <Footer 
-            imagemFilme={imagemFilme}
-            tituloFilme={tituloFilme}
-            weekdayFilme={weekdayFilme}
-            dataFilme={dataFilme}
-        />    
+                    <input type="text" placeholder="Digite seu CPF..." /> 
+                </div> 
+                    <Link to="/sucesso">
+                        <button className="bookSeat">Reservar Assento(s)</button> 
+                    </Link>
+            </div> 
+            <Footer movieTitle={movieTitle} 
+                    movieImg={movieImg} 
+                    movieWeekday={movieWeekday} 
+                    movieHour={movieHour}/>
         </>
     )
 }

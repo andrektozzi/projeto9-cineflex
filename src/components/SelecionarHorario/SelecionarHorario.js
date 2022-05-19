@@ -36,9 +36,9 @@ function Showtime ({index, days}) {
 
 export default function SelectShowtime(){
 
+    const [movieTitle, setMovieTitle] = useState([]);  
+    const [movieImg, setMovieImg] = useState([]);  
     const [movies, setMovies] = useState([]);
-    const [imagemFilme, setImagemFilme] = useState([]);
-    const [tituloFilme, setTituloFilme] = useState([]);
     const  { id }  = useParams();
     
 
@@ -47,26 +47,24 @@ export default function SelectShowtime(){
     
         promise.then((response) => {
           setMovies([response.data]);
-          setImagemFilme(`${response.data.posterURL}`)
-          setTituloFilme(`${response.data.title}`)
+          setMovieTitle(`${response.data.title}`)
+          setMovieImg(`${response.data.posterURL}`)
         })
       }, []);
 
-      const moviesShowtime = movies.map((movie,index) => 
-      ( <Showtime title={movie.title} 
-                 source={movie.posterURL} 
-                 key={index} 
-                 id={movie.id} 
-                 days={movie.days}/>));
-
-    return (
+    const moviesShowtime = movies.map((movie,index) => 
+       ( <Showtime title={movie.title} 
+                  source={movie.posterURL} 
+                  key={index} 
+                  id={movie.id} 
+                  days={movie.days}/>));
+    
+    return(
         <>
             <h5>Selecione o horário</h5>
             {movies.length === 0 ? 'Carregando' : moviesShowtime}        
-            <Footer 
-                tituloFilme={tituloFilme}
-                imagemFilme={imagemFilme}
-            />
+            <Footer movieTitle={movieTitle} 
+                    movieImg={movieImg} />
         </>
     )
 }
