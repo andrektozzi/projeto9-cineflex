@@ -128,7 +128,7 @@ export default function SelectSession(){
             const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
                 ids: seatId,
                 name: name,
-                cpf: Number(cpf)
+                cpf: cpf
             });
 
             promise.then((response)=>{
